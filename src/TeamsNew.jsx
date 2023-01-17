@@ -1,8 +1,15 @@
-export function TeamsNew() {
+export function TeamsNew(props) {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    props.onCreateTeam(params, () => event.target.reset());
+  };
+
   return (
     <div>
       <h1>New Team</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           Name: <input name="name" type="text" />
         </div>
