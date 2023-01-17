@@ -1,10 +1,20 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { TeamsIndex  } from "./TeamsIndex";
 
 export function Content() {
-  const teams = [
-    {id:1, name: "Boston Celtics", location: "Boston", league: "NBA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRydXcw5ZhTEClj4WLiRX5yDXajvZjll-l4IQ&usqp=CAU"}
-  ];
-  
+  const [teams, setTeams] = useState([]);
+
+  const handleTeamsIndex = () => {
+    console.log("handleTeamsIndex");
+    axios.get("http://localhost:3000/teams.json").then((response) => {
+      console.log(response.data);
+      setTeams(response.data);
+    });
+  };
+
+  useEffect(handleTeamsIndex, []);
+
   return (
     <div>
       <TeamsIndex teams={teams} />
