@@ -21,7 +21,7 @@ export function Content() {
   const handleCreateTeam = (params, successCallback) => {
     console.log("handleCreateTeam", params);
     axios.post("http://localhost:3000/teams.json", params).then((response) =>{
-      setTeams([...teams, response.data]);
+      setTeams([...teams, response.data]); //resets team array (...teams is old, response.data is new)
       successCallback();
     });
   };
