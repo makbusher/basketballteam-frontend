@@ -37,10 +37,10 @@ export function Content() {
     setIsTeamsShowVisible(false);
   };
 
-  const handleUpdateTeam = (params, teamId) => {
-    console.log(teamId);
+  const handleUpdateTeam = (params, id) => {
+    console.log(id);
     
-    axios.patch(`http://localhost:3000/teams/${teamId}.json`, params).then(response => {
+    axios.patch(`http://localhost:3000/teams/${id}.json`, params).then(response => {
       console.log(response.data);
       setTeams(teams.map(team => {
         if (team.id === response.data.id) {
