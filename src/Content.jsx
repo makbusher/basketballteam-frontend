@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { TeamsIndex  } from "./TeamsIndex";
+import { TeamsNew } from "./TeamsNew";
 
 export function Content() {
   const [teams, setTeams] = useState([]);
@@ -13,10 +14,21 @@ export function Content() {
     });
   };
 
+  const handleCreateTeam = (params, successCallback) => {
+    console.log("handleCreateTeam", params);
+    axios.post("http://localhost:3000/teams.json", params).then((response) =>{
+      setTeams([...teams, response.data]);
+      successCallback();
+    });
+  };
+
   useEffect(handleTeamsIndex, []);
 
   return (
     <div>
+      <TeamsNew onCreateTeam={handleCreateTeam} />
+      <br/>
+      <hr/>
       <TeamsIndex teams={teams} />
     </div>
   );

@@ -15,6 +15,7 @@ export function TeamsNew() {
         <div>
           Logo: <input name="logo" type="text" />
         </div>
+        <button type="submit">Add Team</button>
       </form>
     </div>
   );
