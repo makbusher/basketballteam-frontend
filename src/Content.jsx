@@ -2,9 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { TeamsIndex  } from "./TeamsIndex";
 import { TeamsNew } from "./TeamsNew";
+import { Modal } from "./Modal";
 
 export function Content() {
   const [teams, setTeams] = useState([]);
+  const [isTeamsShowVisible, setIsTeamsShowVisible] = useState(false);
+  const [currentTeam, setCurrentTeam] = useState({});
 
   const handleTeamsIndex = () => {
     console.log("handleTeamsIndex");
@@ -22,6 +25,17 @@ export function Content() {
     });
   };
 
+  const handleShowTeam = (team) => {
+    console.log("handleShowTeam", team);
+    setIsTeamsShowVisible(true);
+    setCurrentTeam(team);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsTeamsShowVisible(false);
+  };
+
   useEffect(handleTeamsIndex, []);
 
   return (
@@ -29,7 +43,10 @@ export function Content() {
       <TeamsNew onCreateTeam={handleCreateTeam} />
       <br/>
       <hr/>
-      <TeamsIndex teams={teams} />
+      <TeamsIndex teams={teams} onShowTeam={handleShowTeam} />
+      <Modal show={isTeamsShowVisible} onClose={handleClose}>
+        <h1>Test</h1>
+      </Modal>
     </div>
   );
 }
