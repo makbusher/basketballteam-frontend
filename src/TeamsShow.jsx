@@ -12,6 +12,7 @@ export function TeamsShow(props) {
           League: <input defaultValue={props.team.league} name="league" type="text" />
           Logo: <input defaultValue={props.team.logo} name="logo" type="text" />
         </div>
+        <button type="submit">Update Team</button>
       </form>
     </div>
   );

@@ -37,6 +37,25 @@ export function Content() {
     setIsTeamsShowVisible(false);
   };
 
+  const handleUpdateTeam = (params, teamId) => {
+    console.log(teamId);
+    
+    axios.patch(`http://localhost:3000/teams/${teamId}.json`, params).then(response => {
+      console.log(response.data);
+      setTeams(teams.map(team => {
+        if (team.id === response.data.id) {
+          return response.data;
+        } else {
+          return team;
+        }
+      }));
+      handleClose();
+      // window.location.href = '/';
+    });
+    console.log('updating team...');
+  };
+
+
   useEffect(handleTeamsIndex, []);
 
   return (
@@ -46,7 +65,7 @@ export function Content() {
       <hr/>
       <TeamsIndex teams={teams} onShowTeam={handleShowTeam} />
       <Modal show={isTeamsShowVisible} onClose={handleClose}>
-        <TeamsShow team={currentTeam} />
+        <TeamsShow team={currentTeam} onUpdateTeam={handleUpdateTeam}/>
       </Modal>
     </div>
   );
