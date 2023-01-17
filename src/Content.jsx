@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { TeamsIndex  } from "./TeamsIndex";
 import { TeamsNew } from "./TeamsNew";
 import { Modal } from "./Modal";
+import { TeamsShow } from "./TeamsShow";
 
 export function Content() {
   const [teams, setTeams] = useState([]);
@@ -45,7 +46,7 @@ export function Content() {
       <hr/>
       <TeamsIndex teams={teams} onShowTeam={handleShowTeam} />
       <Modal show={isTeamsShowVisible} onClose={handleClose}>
-        <h1>Test</h1>
+        <TeamsShow team={currentTeam} />
       </Modal>
     </div>
   );
