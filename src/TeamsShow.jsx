@@ -3,8 +3,7 @@ export function TeamsShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    console.log(props.team);
-    props.onUpdateTeam(props.team.id, params);
+    props.onUpdateTeam(props.team.id, params, () => event.target.reset());
   };
 
   return (
